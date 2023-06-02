@@ -1,67 +1,66 @@
+import React, { useRef, useState } from 'react'
 import { BackArrow } from '@/icons/BackArrow'
 import { ForwerdArrow } from '@/icons/ForwerdArrow'
 import { InboxIcon } from '@/icons/InboxIcon'
 import { LinkdinIcon } from '@/icons/LinkdinIcon'
 import { Phone } from '@/icons/Phone'
-import Image from 'next/image'
-import React, { useRef, useState } from 'react'
 
-const employeeDetail = [
-    { first_name: "James", last_name: "Hiddleston", current_title: "Machine Learning Engineer", location: "San Francisco By Area", phone_number: "", personal_email: "", linkedIn: "", experience_first: "Senior Machine Learning Engineer at Google October ", experience_second: "Junior Machine Learning Engineer at spotify June", education: "Standerd University,M.S., Computer science October" },
-    { first_name: "John", last_name: "Doe", current_title: "Website Developer ", location: " United Kingdom", phone_number: "", personal_email: "", linkedIn: "", experience_first: "Senior Website Developer at Google October ", experience_second: "Junior Website Developer at spotify June", education: "Standerd University,M.S., Computer science October" },
-    { first_name: "Joel B.", last_name: "Oglesby", current_title: "PHP Laravel Developer", location: "United State", phone_number: "", personal_email: "", linkedIn: "", experience_first: "Senior PHP Laravel Developer at Google October ", experience_second: "Junior PHP Laravel Developer at spotify Jul", education: "Standerd University,M.S., Computer science October" },
-    { first_name: "Carles Gil", last_name: "Zambrano", current_title: "Frontend Developer - React Js", location: "American", phone_number: "", personal_email: "", linkedIn: "", experience_first: "Senior MFrontend Developer - React Js at Google October ", experience_second: "Junior Frontend Developer - React Js spotify Jul", education: "Standerd University,M.S., Computer science October" },
-    { first_name: "Bru León", last_name: "Delgado", current_title: "Frontend Developer - Next Js", location: "New Zealand", phone_number: "", personal_email: "", linkedIn: "", experience_first: "Senior Frontend Developer - Next Js at Google October ", experience_second: "Junior MFrontend Developer - Next Js at spotify Jul", education: "Standerd University,M.S., Computer science October" },
-    { first_name: "Richard", last_name: "Bachman", current_title: "Front-End Developer (UI / UX)", location: "San Francisco By Area", phone_number: "", personal_email: "", linkedIn: "", experience_first: "Senior Front-End Developer (UI / UX) at Google October ", experience_second: "Junior Front-End Developer (UI / UX) at spotify June", education: "Standerd University,M.S., Computer science October" },
-    { first_name: "Mark", last_name: "Twain", current_title: "Python Developer", location: "San Francisco By Area", phone_number: "", personal_email: "", linkedIn: "", experience_first: "SeniorPython Developer at Google October ", experience_second: "Junior Python Developer at spotify June", education: "Standerd University,M.S., Computer science October" },
+const employeesDetail = [
+    { firstName: "James", lastName: "Hiddleston", currentTitle: "Machine Learning Engineer", location: "San Francisco By Area", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "Senior Machine Learning Engineer at Google October ", experienceSecond: "Junior Machine Learning Engineer at spotify June", education: "Standerd University,M.S., Computer science October" },
+    { firstName: "John", lastName: "Doe", currentTitle: "Website Developer ", location: " United Kingdom", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "Senior Website Developer at Google October ", experienceSecond: "Junior Website Developer at spotify June", education: "Standerd University,M.S., Computer science October" },
+    { firstName: "Joel B.", lastName: "Oglesby", currentTitle: "PHP Laravel Developer", location: "United State", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "Senior PHP Laravel Developer at Google October ", experienceSecond: "Junior PHP Laravel Developer at spotify Jul", education: "Standerd University,M.S., Computer science October" },
+    { firstName: "Carles Gil", lastName: "Zambrano", currentTitle: "Frontend Developer - React Js", location: "American", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "Senior MFrontend Developer - React Js at Google October ", experienceSecond: "Junior Frontend Developer - React Js spotify Jul", education: "Standerd University,M.S., Computer science October" },
+    { firstName: "Bru León", lastName: "Delgado", currentTitle: "Frontend Developer - Next Js", location: "New Zealand", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "Senior Frontend Developer - Next Js at Google October ", experienceSecond: "Junior MFrontend Developer - Next Js at spotify Jul", education: "Standerd University,M.S., Computer science October" },
+    { firstName: "Richard", lastName: "Bachman", currentTitle: "Front-End Developer (UI / UX)", location: "San Francisco By Area", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "Senior Front-End Developer (UI / UX) at Google October ", experienceSecond: "Junior Front-End Developer (UI / UX) at spotify June", education: "Standerd University,M.S., Computer science October" },
+    { firstName: "Mark", lastName: "Twain", currentTitle: "Python Developer", location: "San Francisco By Area", phoneNumber: "", personalEmail: "", linkedIn: "", experienceFirst: "SeniorPython Developer at Google October ", experienceSecond: "Junior Python Developer at spotify June", education: "Standerd University,M.S., Computer science October" },
 ]
 
 export const Gallary = () => {
-    const scrl = useRef(null);
+    const scroll = useRef(null);
     const [scrollX, setscrollX] = useState(0);
-    const [scrolEnd, setscrolEnd] = useState(false);
+    const [scrollEnd, setScrollEnd] = useState(false);
     //Slide click
     const slide = (shift) => {
-        scrl.current.scrollLeft += shift;
+        scroll.current.scrollLeft += shift;
         setscrollX(scrollX + shift);
         if (
-            Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
-            scrl.current.offsetWidth
+            Math.floor(scroll.current.scrollWidth - scroll.current.scrollLeft) <=
+            scroll.current.offsetWidth
         ) {
-            setscrolEnd(true);
+            setScrollEnd(true);
         } else {
-            setscrolEnd(false);
+            setScrollEnd(false);
         }
     };
     const scrollCheck = () => {
-        setscrollX(scrl.current.scrollLeft);
+        setscrollX(scroll.current.scrollLeft);
         if (
-            Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
-            scrl.current.offsetWidth
+            Math.floor(scroll.current.scrollWidth - scroll.current.scrollLeft) <=
+            scroll.current.offsetWidth
         ) {
-            setscrolEnd(true);
+            setScrollEnd(true);
         } else {
-            setscrolEnd(false);
+            setScrollEnd(false);
         }
     };
 
     return (
         <div className='flex justify-center items-center h-[100vh] bg-[#eeeee4]'>
             <div className='relative flex justify-center w-[700px]'>
-                <div className="card flex items-center overflow-scroll scroll-smooth w-[700px] group/item" ref={scrl} onScroll={scrollCheck}>
-                    {employeeDetail.map((employee, index) => (
+                <div className="card flex items-center overflow-scroll scroll-smooth w-[700px] group/item" ref={scroll} onScroll={scrollCheck}>
+                    {employeesDetail.map((employee, index) => (
                         <div key={index} >
                             <div class="mt-3 bg-white pl-14 pb-5 rounded-lg w-[700px] border-[#e7e7e8] boredr-1 ">
                                 <div className='py-5 '>
                                     <div className='flex items-center '>
                                         <h3 class='text-lg font-semibold text-[#262c4a] mr-3'>
-                                            {employee.first_name} {employee.last_name}
+                                            {employee.firstName} {employee.lastName}
                                         </h3>
-                                        <a href={employee.phone_number }>
+                                        <a href={employee.phoneNumber }>
                                             <Phone />
                                         </a>
                                         <div className='ml-3 mr-3 border-r-2 w-10'>
-                                            <a href={employee.personal_email}>
+                                            <a href={employee.personalEmail}>
                                                 <InboxIcon />
                                             </a>
                                         </div>
@@ -71,7 +70,7 @@ export const Gallary = () => {
                                     </div>
                                     <div className='flex items-center'>
                                         <p className='text-sm font-normal text-[#262c4a]'>
-                                            {employee.current_title}
+                                            {employee.currentTitle}
                                         </p>
                                         <div className='w-1 h-1 bg-[#ededed] rounded-full mx-5'></div>
                                         <p className='text-[#bdbdbf]'>{employee.location}</p>
@@ -91,8 +90,7 @@ export const Gallary = () => {
                                                     <img src="/images/code.jpeg" alt='img' className='w-[20px] absolute rounded-full h-[20px]' />
                                                 </div>
                                                 <p class="text-sm text-[#4e4b61] w-[350px] text-ellipsis truncate whitespace-nowrap">
-
-                                                    {employee.experience_first}
+                                                    {employee.experienceFirst}
                                                 </p>
                                             </div>
                                             <div className='flex items-center'>
@@ -100,10 +98,9 @@ export const Gallary = () => {
                                                     <img src="/images/codeingImage.webp" alt='img' className='w-[20px] absolute rounded-full h-[20px]' />
                                                 </div>
                                                 <p class="text-sm text-[#4e4b61] w-[350px] text-ellipsis truncate whitespace-nowrap">
-                                                    {employee.experience_second}
+                                                    {employee.experienceSecond}
                                                 </p>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +113,6 @@ export const Gallary = () => {
                                                 <div className='bg-[#ededed] flex justify-center items-center  w-[20px] h-[20px] rounded-full p-1.5 m-1 mx-4'>
                                                     <img src="/images/dev.webp" alt='img' className='w-[20px] absolute rounded-full h-[20px]' />
                                                 </div>
-
                                                 <p class="text-sm text-[#4e4b61] w-[350px] text-ellipsis truncate whitespace-nowrap">
                                                     {employee.education}
                                                 </p>
@@ -135,16 +131,14 @@ export const Gallary = () => {
                             <BackArrow />
                         </button>
                     )}
-                    {!scrolEnd && (
+                    {!scrollEnd && (
                         <button
                             className="bg-[#00000099] rounded-full p-1  absolute invisible group-hover/item:visible right-3 top-[50%]"
                             onClick={() => slide(+700)}
                         >
                             <ForwerdArrow />
-
                         </button>
                     )}
-
                 </div>
                 <div>
 
